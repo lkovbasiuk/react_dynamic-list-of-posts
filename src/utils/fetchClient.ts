@@ -1,4 +1,4 @@
-import { CommentData } from '../types/Comment';
+import { Comment, CommentData } from '../types/Comment';
 import { Post } from '../types/Post';
 import { User } from '../types/User';
 
@@ -55,7 +55,7 @@ export const getCommentsByPost = (postId: number) => {
   return client.get<Comment[]>(`/comments?postId=${postId}`);
 };
 
-export const addComment = ({ postId, name, email, body }) => {
+export const addComment = ({ postId, name, email, body }: Comment) => {
   return client.post<CommentData>(`/comments`, { postId, name, email, body });
 };
 

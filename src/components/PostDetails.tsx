@@ -3,6 +3,7 @@ import { Loader } from './Loader';
 import { NewCommentForm } from './NewCommentForm';
 import { Post } from '../types/Post';
 import { deleteComment, getCommentsByPost } from '../utils/fetchClient';
+import { Comment } from '../types/Comment';
 
 type Props = {
   posts: Post[];
@@ -36,7 +37,7 @@ export const PostDetails: React.FC<Props> = ({ posts, openPostId }) => {
       .finally(() => setIsLoading(false));
   }, [openPostId]);
 
-  const onSubmit = newComment => {
+  const onSubmit = (newComment: Comment) => {
     setComments(prev => [...prev, newComment]);
   };
 
