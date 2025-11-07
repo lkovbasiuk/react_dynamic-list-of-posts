@@ -38,11 +38,11 @@ export const NewCommentForm: React.FC<Props> = ({ postId, onSubmit }) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    setHasNameError(!name);
-    setHasMailError(!mail);
-    setHasCommentError(!comment);
+    setHasNameError(!name.trim());
+    setHasMailError(!mail.trim());
+    setHasCommentError(!comment.trim());
 
-    if (!name || !mail || !comment) {
+    if (!name.trim() || !mail.trim() || !comment.trim()) {
       return;
     }
 

@@ -22,9 +22,14 @@ export const App = () => {
   const [openPostId, setOpenPostId] = useState<number | null>(null);
 
   useEffect(() => {
-    getUsers().then(result => {
-      setUsers(result);
-    });
+    getUsers()
+      .then(result => {
+        setUsers(result);
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.error('Failed to load users:', error);
+      });
   }, []);
 
   useEffect(() => {

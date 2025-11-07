@@ -41,19 +41,17 @@ export const PostDetails: React.FC<Props> = ({ posts, openPostId }) => {
   };
 
   const handleDeleteComment = async (commentId: number) => {
+    const previousComments = comments;
+
     setComments(prevComments =>
       prevComments.filter(comment => comment.id !== commentId),
     );
 
-    setIsLoading(true);
-
     try {
       await deleteComment(commentId);
-      setComments(prev => prev.filter(comment => comment.id !== commentId));
     } catch {
+      setComments(previousComments);
       setLoadCommError('Failed to delete comment');
-    } finally {
-      setIsLoading(false);
     }
   };
 
